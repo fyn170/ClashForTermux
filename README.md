@@ -58,7 +58,7 @@
 - http://127.0.0.1:9090/ui/#/proxies
 
   ## Setting IPTABLE Without Root
-- network setting
+- Open network setting
 - Access Point Names (APN)
 - APN Reccomended : internet
 - Proxy : 127.0.0.1
