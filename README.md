@@ -3,6 +3,8 @@
   ## Install
 - pkg update && pkg upgrade -y
 
+- pkg install nano -y
+
 - pkg install git -y
 
 - git clone https://github.com/fyn170/ClashForTermux.git
