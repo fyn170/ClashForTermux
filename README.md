@@ -42,7 +42,6 @@
  - skip-cert-verify: true
     
   ## Running Clash
-- 
 - Command :
 
   ### vmess
