@@ -15,7 +15,6 @@
 
   ## Edit vmess.yaml
 - type nano .config/clash/vmess.yaml
-
  - name: "Vmess_Server"
  - server: HOST_SERVER
  - port: 443
@@ -33,7 +32,6 @@
     
   ## Edit trojan.yaml
 - type nano .config/clash/trojan.yaml
-
  - name: "Trojan_Server"
  - type: trojan
  - server: HOST_SERVER
@@ -44,7 +42,7 @@
  - skip-cert-verify: true
     
   ## Running Clash
-- Sebelum di running dahulukan lah, edit config
+- 
 - Command :
 
   ### vmess
