@@ -1,7 +1,7 @@
 # ClashForTermux
 
   ## Install
-- pkg update && apt install upgrade -y
+- pkg update && pkg upgrade -y
 
 - pkg install git -y
 
