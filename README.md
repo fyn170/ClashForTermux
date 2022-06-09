@@ -1,9 +1,9 @@
 # ClashForTermux
 
   ## Install
-- apt update && apt install upgrade -y
+- pkg update && apt install upgrade -y
 
-- apt install git -y
+- pkg install git -y
 
 - git clone https://github.com/fyn170/ClashForTermux.git
 
