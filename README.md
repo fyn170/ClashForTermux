@@ -7,12 +7,14 @@
 
 - git clone https://github.com/fyn170/ClashForTermux.git
 
-- cd ClashForTermux && bash install.sh
+- cd ClashForTermux
+
+- bash install.sh
 
 - cd
 
   ## Edit vmess.yaml
-- ketik micro .config/clash/vmess.yaml
+- type nano .config/clash/vmess.yaml
 
  - name: "Vmess_Server"
  - server: HOST_SERVER
@@ -30,7 +32,7 @@
  -     Host: BUG_SNI
     
   ## Edit trojan.yaml
-- ketik micro .config/clash/trojan.yaml
+- type nano .config/clash/trojan.yaml
 
  - name: "Trojan_Server"
  - type: trojan
@@ -46,20 +48,19 @@
 - Command :
 
   ### vmess
-- micro .config/clash/vmess.yaml
+- nano .config/clash/trojan.yaml
 
   ### trojan
-- micro .config/clash/trojan.yaml
-
-- Itupun tergantung kepunyaan paket sc maupun server
+- nano .config/clash/trojan.yaml
 
   ## Open Yacd-Dashboard
-- Buka Chrome
+- Open Chrome for yacd pages
+
 - http://127.0.0.1:9090/ui/#/proxies
 
   ## Setting IPTABLE Without Root
-- Buka pengaturan jaringan
-- masuk ke Access Point Names (APN)
-- APN : Bebas (Reccomended : internet)
+- network setting
+- Access Point Names (APN)
+- APN Reccomended : internet
 - Proxy : 127.0.0.1
 - Port : 7890
