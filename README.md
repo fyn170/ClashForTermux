@@ -1,65 +1,45 @@
-# ClashForTermux
+## ClashForTermux (No-Root)
+- Openclash for termux tanpa harus **root** smartphone (hp)
 
-  ## Install
-- pkg update && pkg upgrade -y
+### Cara install
+---
+- Buka Terminal Termux, salin satu per satu script dibawah ini untuk menginstall.
 
-- pkg install nano -y
+```
+  - pkg update && pkg upgrade -y
 
-- pkg install git -y
+  - pkg install git -y
 
-- git clone https://github.com/fyn170/ClashForTermux.git
+  - pkg install mc -y
 
-- cd ClashForTermux
+  - git clone https://github.com/fyn170/ClashForTermux.git
 
-- bash install.sh
+  - cd ClashForTermux
 
-- cd
+  - bash install.sh
+ 
+  - cd
+  
+  - cd .config/clash
+```
+### Cara setting akun
+---
+- ketik **``mc``** pada terminal termux
+- kemudian klik akun
+- edit dan masukkan akun di *``akun.yml``*
+- ( **``Note: Core premium only jadi , Support semua protocol kecuali Vless``** )
+- setelah selesai memasukkan akun lalu save dan keluar **``mc``**
 
-  ## Edit vmess.yaml
-- type nano .config/clash/vmess.yaml
- - name: "Vmess_Server"
- - server: HOST_SERVER
- - port: 443
- - type: vmess
- - uuid: ISI_UUID
- - alterId: 0
- - cipher: auto
- - tls: true
- - skip-cert-verify: true
- - network: ws
- - ws-opts:
- -   path: /vvip
- -   headers:
- -     Host: BUG_SNI
-    
-  ## Edit trojan.yaml
-- type nano .config/clash/trojan.yaml
- - name: "Trojan_Server"
- - type: trojan
- - server: HOST_SERVER
- - port: 443
- - password: PASS_SERVER
- - udp: true
- - sni: BUG_SNI
- - skip-cert-verify: true
-    
-  ## Running Clash
-- Command :
-
-  ### vmess
-- nano .config/clash/trojan.yaml
-
-  ### trojan
-- nano .config/clash/trojan.yaml
-
-  ## Open Yacd-Dashboard
-- Open Chrome for yacd pages
-
-- http://127.0.0.1:9090/ui/#/proxies
-
-  ## Setting IPTABLE Without Root
-- Open network setting
-- Access Point Names (APN)
-- APN Reccomended : internet
-- Proxy : 127.0.0.1
-- Port : 7890
+### Cara menjalankan
+---
+- setting APN dulu
+- APN ( **internet** )
+- Proxy **``127.0.0.1 dan port 7893``**
+- kemudian buka termux kembali
+- lalu ketik **```clash```** untuk menjalankan
+- buka browser kemudian ketik **``` http://localhost:9090/ui ```** untuk membuka dashboard
+- setelah masuk dashboard klik **``GLOBAL``** lalu pilih **``server``**
+- cara stop tekan **``ctrl + c``**
+---
+###
+- [Fynn](https://github.com/fyn170/ClashForTermux)

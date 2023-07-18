@@ -6,63 +6,73 @@ r="\033[1;31m"
 b="\033[1;34m"
 w="\033[0m"
 
-mkdir -p $HOME/.config/clash
-echo ""
+sleep 2
 
-echo -e "${b}➤ ${w}Clash For Termux Non Root"
 echo ""
-
-echo -e "${b}➤ ${w}Preparing for installing dependencies..."
+echo -e $b"➤ "$w"Clash For Termux Non Root"
 echo ""
-
-echo -e "${b}➤ ${w}Installing package: ${g}clash${w}"
+echo -e $b"➤ "$w"installing dependencies ..."
+echo ""
+echo -e $b"➤ "$w"installing ... "$g"clash"$w
 pkg install clash
 echo ""
-
-echo -e "${b}➤ ${w}Installing package: ${g}unzip${w}"
+echo -e $b"➤ "$w"installing ... "$g"mc"$w
+pkg install mc
+echo ""
+echo -e $b"➤ "$w"installing ... "$g"unzip"$w
 pkg install unzip
 echo ""
 
-echo -e "${b}➤ ${w}Installing package: ${g}micro${w}"
-pkg install micro
+mkdir -p $HOME/.config/clash
+echo ""
+mkdir -p $HOME/.config/clash/akun
+echo ""
+mkdir -p $HOME/.config/clash/dashboard
 echo ""
 
-cd $HOME/ClashForTermux
+cd $HOME/ClashTermux
 sleep 2
 
-echo -e "${b}➤ ${w}Copying yacd-dashbord: ${g}yacd${w}"
-cp -r -f yacd-gh-pages.zip $HOME/.config/clash
-echo ""
-
-sleep 2
-
-echo -e "${b}➤ ${w}Copying vmess.yaml: ${g}vmess${w}"
-cp -r -f vmess.yaml $HOME/.config/clash
+echo -e $b"➤ "$w"copying "$g"akun"$w
+cp -r -f akun $HOME/.config/clash/
 echo ""
 
 sleep 2
-
-echo -e "${b}➤ ${w}Copying trojan.yaml: ${g}trojan${w}"
-cp -r -f trojan.yaml $HOME/.config/clash
+echo -e $b"➤ "$w"copying "$g"config"$w
+cp -r -f config.yaml $HOME/.config/clash/
 echo ""
 
 sleep 2
-
-echo -e "${b}➤ ${w}Copying config.yaml: ${g}config${w}"
-cp -r -f config.yaml $HOME/.config/clash
+echo -e $b"➤ "$w"copying "$g"cache.db"$w
+cp -r -f cache.db $HOME/.config/clash/
 echo ""
 
 sleep 2
-
-cd $HOME/.config/clash
-echo -e "${b}➤ ${w}Extracting yacd-dashbord: ${g}yacd${w}"
-unzip yacd-gh-pages.zip
+echo -e $b"➤ "$w"copying "$g"Country.mmdb"$w
+cp -r -f Country.mmdb $HOME/.config/clash/
 echo ""
 
 sleep 2
-rm -r -f yacd-gh-pages.zip
+echo -e $b"➤ "$w"copying "$g"dashboard"$w
+cp -r -f dashboard.zip $HOME/.config/clash/
+echo ""
+
+sleep 2
+rm -r -f cache.db
+rm -r -f Country.mmdb
+rm -r -f dashboard.zip
+
 sleep 2
 cd
-rm -r -f ClashForTermux
-clash
+rm -r -f ClashTermux
+cd
+echo ""
+
+sleep 2
+cd .config/clash/
+sleep 2
+unzip dashboard.zip
+rm -rf dashboard.zip
+cd .config/clash/
+
 clear

@@ -1,55 +1,108 @@
+# Online Config Subscribe
+# Clash For Termux
+# Credits [fyn170](https://github.com/fyn170/ClashForTermux)
+---
 port: 7890
 socks-port: 7891
 #redir-port: 7892
 mixed-port: 7893
 #tproxy-port: 7895
-mode: global
+mode: rule
 log-level: info
 allow-lan: true
+unified-delay: true
+geodata-mode: true
 external-controller: 0.0.0.0:9090
-secret : ""
+external-ui: dashboard
+secret: ""
 bind-address: "*"
-external-ui: yacd-gh-pages
+ipv6: false
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
+  nameserver:
+  - 8.8.8.8
+  - 8.8.4.4
+  - 94.140.14.14
+  - 94.140.15.15
+  - https://dns.adguard-dns.com/dns-query
+  - https://dns.google/dns-query
+  - tls://dns.adguard-dns.com
+  - tls://dns.google
   enable: true
   ipv6: false
-  enhanced-mode: redir-host
-  listen: 127.0.0.1:7894
-  use-hosts: true
-  nameserver:
-    - https://cloudflare-dns.com/dns-query
-    - tls://1dot1dot1dot1.cloudflare-dns.com
-  fallback:
-    - https://dns.google/dns-query
-
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 127.0.0.1:7874
+  fake-ip-filter:
+  - "+.*"
+  default-nameserver:
+  - 8.8.8.8
+  - 8.8.4.4
+  - 94.140.14.14
+  - 94.140.15.15
 proxy-providers:
-  Vmess:
+  Server:
     type: file
-    path: "./vmess.yaml"
+    behavior: classical
+    path: "./proxy_provider/akun.yml"
     health-check:
-      enable: false
+      enable: true
+      interval: '120'
       url: http://www.gstatic.com/generate_204
-      interval: 300
-  Trojan:
-    type: file
-    path: "./trojan.yaml"
-    health-check:
-      enable: false
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      
-#Gunakan tanda pagar menghiden, jika salah satu server tidak kepakai
 proxy-groups:
-- name: SERVER
+- name: 18+
+  type: select
+  proxies:
+  - REJECT
+  - Server
+- name: Ads
+  type: select
+  proxies:
+  - REJECT
+  - Server
+- name: Chat
+  type: select
+  strategy: consistent-hashing
+  disable-udp: false
+  proxies:
+  - DIRECT
+  - Server
+- name: Server
   type: load-balance
   strategy: consistent-hashing
   disable-udp: false
   use:
-    - Vmess
-  #- Trojan 
+  - Server
   url: http://www.gstatic.com/generate_204
-  interval: '300'
-   
+  interval: '120'
 rules:
-- MATCH,SERVER
-- MATCH,GLOBAL
+  # Ads
+  - DOMAIN-KEYWORD,[googlesyndication;ads;adservice;googleadservices],REJECT
+  # ISP
+  - DOMAIN-KEYWORD,[axis;telkomsel;myxl;indosat;tri],Server
+  # Porn
+  - DOMAIN-KEYWORD,[bokep;cerdas;pornhub;xnxx],REJECT
+  # Sosmed
+  - DOMAIN-KEYWORD,facebook,Server
+  - DOMAIN-KEYWORD,instagram,Server
+  - DOMAIN-KEYWORD,line,Server
+  - DOMAIN-KEYWORD,speed,Server
+  - DOMAIN-KEYWORD,telegram,Server
+  - DOMAIN-KEYWORD,tiktok,Server
+  - DOMAIN-KEYWORD,twitter,Server
+  - DOMAIN-KEYWORD,whatsapp,Server
+  # Stream
+  - DOMAIN-KEYWORD,disney,Server
+  - DOMAIN-KEYWORD,google,Server
+  - DOMAIN-KEYWORD,netflix,Server
+  - DOMAIN-KEYWORD,vidio,Server
+  - DOMAIN-KEYWORD,youtube,Server
+  - MATCH,Server
