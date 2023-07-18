@@ -70,14 +70,14 @@ proxy-groups:
   - Server
 - name: Chat
   type: select
-  strategy: consistent-hashing
+  strategy: round-robin
   disable-udp: false
   proxies:
   - DIRECT
   - Server
 - name: Server
-  type: load-balance
-  strategy: consistent-hashing
+  type: fallback
+  strategy: round-robin
   disable-udp: false
   use:
   - Server
@@ -105,4 +105,5 @@ rules:
   - DOMAIN-KEYWORD,netflix,Server
   - DOMAIN-KEYWORD,vidio,Server
   - DOMAIN-KEYWORD,youtube,Server
+  - GEOIP,ID,Server
   - MATCH,Server

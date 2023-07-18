@@ -1,5 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
+# Define colors for formatting output
 null="> /dev/null 2>&1"
 g="\033[1;32m"
 r="\033[1;31m"
@@ -9,70 +10,50 @@ w="\033[0m"
 sleep 2
 
 echo ""
-echo -e $b"➤ "$w"Clash For Termux Non Root"
+echo -e "$b➤ $w Clash For Termux Non Root"
 echo ""
-echo -e $b"➤ "$w"installing dependencies ..."
-echo ""
-echo -e $b"➤ "$w"installing ... "$g"clash"$w
-pkg install clash
-echo ""
-echo -e $b"➤ "$w"installing ... "$g"mc"$w
-pkg install mc
-echo ""
-echo -e $b"➤ "$w"installing ... "$g"unzip"$w
-pkg install unzip
+echo -e "$b➤ $w Installing dependencies ..."
 echo ""
 
-mkdir -p $HOME/.config/clash
-echo ""
-mkdir -p $HOME/.config/clash/akun
-echo ""
-mkdir -p $HOME/.config/clash/dashboard
+# Install required packages
+pkg install -y clash mc unzip
+
 echo ""
 
-cd $HOME/ClashTermux
-sleep 2
+# Create necessary directories
+mkdir -p $HOME/.config/clash/{proxy_provider,dashboard}
 
-echo -e $b"➤ "$w"copying "$g"akun"$w
-cp -r -f akun $HOME/.config/clash/
 echo ""
 
-sleep 2
-echo -e $b"➤ "$w"copying "$g"config"$w
+# Move necessary files to the appropriate directories
+cp -r -f proxy_provider $HOME/.config/clash/
 cp -r -f config.yaml $HOME/.config/clash/
-echo ""
-
-sleep 2
-echo -e $b"➤ "$w"copying "$g"cache.db"$w
-cp -r -f cache.db $HOME/.config/clash/
-echo ""
-
-sleep 2
-echo -e $b"➤ "$w"copying "$g"Country.mmdb"$w
 cp -r -f Country.mmdb $HOME/.config/clash/
-echo ""
-
-sleep 2
-echo -e $b"➤ "$w"copying "$g"dashboard"$w
 cp -r -f dashboard.zip $HOME/.config/clash/
+
 echo ""
 
 sleep 2
-rm -r -f cache.db
-rm -r -f Country.mmdb
-rm -r -f dashboard.zip
 
-sleep 2
-cd
-rm -r -f ClashTermux
-cd
-echo ""
-
-sleep 2
-cd .config/clash/
-sleep 2
-unzip dashboard.zip
+# Extract the dashboard.zip
+cd $HOME/.config/clash/
+unzip -q dashboard.zip
 rm -rf dashboard.zip
-cd .config/clash/
 
+# Change directory to .config/clash
+cd $HOME/.config/clash
+
+# Go back to the home directory
+cd
+
+# Remove files and directories in $HOME that are no longer needed
+rm -rf ClashForTermux
+# Clear the screen
 clear
+
+echo ""
+echo -e "$b➤ $w Clash For Termux Non Root installation complete."
+echo ""
+
+sleep 2
+cd
